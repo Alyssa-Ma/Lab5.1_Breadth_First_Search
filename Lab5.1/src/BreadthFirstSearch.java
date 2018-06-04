@@ -26,10 +26,30 @@ public class BreadthFirstSearch {
 			System.out.println(startNode);
 		}
 		
-		Queue<javax.xml.soap.Node> queue = new LinkedList<>();
+		Queue<Node> queue = new LinkedList<>();
 		ArrayList<Node> explored = new ArrayList<>();
 		queue.add(this.startNode);
-		explored.add
+		explored.add(startNode);
+		
+		while(!queue.isEmpty())
+		{
+			Node current =  queue.remove();
+			
+			if(current.equals(this.goalNode))
+			{
+				System.out.println(explored);
+				return true;
+			}
+			else
+			{
+				if(current.getChildren().isEmpty())
+					return false;
+				else
+					queue.addAll(current.getChildren());
+			}
+			explored.add(current);
+		}
+		return false;
 	}
 
 }
